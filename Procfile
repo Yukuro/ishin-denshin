@@ -1,1 +1,1 @@
-discordbot: python main.py
+ishin-denshin: python main.py
