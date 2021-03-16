@@ -58,4 +58,30 @@ async def tellme(ctx, channelName):
     print(out)
     await ctx.send(out)
 
+@bot.command()
+async def konya(ctx, *args):
+    res = "\nこんや～\n"
+
+    if len(args) == 0:
+        return
+
+    if args[0] != "": # game name
+        res += args[0]
+    if args[1] != "": # time
+        if args[1] == "now":
+            res += " 今から\n"
+        else:
+            res += " {}～\n".format(args[1])
+
+    print(res)
+    line_notify.notify(res, os.environ["LINE_NOTIFY_TOKEN"])
+
+@bot.command()
+async def invite(ctx, name):
+    res = "\n{}は{}をゲームに誘っています!\n".format(ctx.author.display_name, name)
+    res += "一緒にゲームをしませんか？\n"
+
+    print(res)
+    line_notify.notify(res, os.environ["LINE_NOTIFY_TOKEN"])
+
 bot.run(os.environ["DISCORD_BOT_TOKEN"])
